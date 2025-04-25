@@ -2,8 +2,9 @@
 Contributors: shalior
 Tags: referral marketing, refer, referral, affiliate, affiliate marketing
 Requires at least: 4.8
-Tested up to: 6.5
+Tested up to: 6.7
 Requires PHP: 5.6
+Stable tag: 1.4.12
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,6 +29,13 @@ note: on activation plugin will create refer codes for all of your users.
 4. Managing referrals in User edit page
 
 == Changelog ==
+
+= 1.4.12 =
+* minor fix to ensure default options are used
+
+= 1.4.11 =
+* Add an option to hide referral info in users table
+* Make referral counts sortable in users table
 
 = 1.4.10 =
 * UI enhancements.

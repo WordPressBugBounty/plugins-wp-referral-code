@@ -9,8 +9,8 @@
  * @wordpress-plugin
  * Plugin Name:       WP Referral Code
  * Plugin URI:        http://shalior.ir/wp-referral-code
- * Description:       This plugin brings referral codes to your WordPress website. many shortcodes are available and its all free
- * Version:           1.4.10
+ * Description:       This plugin brings referral marketing to your WordPress website. It's dead simple, fast, customizable, and it's all free!
+ * Version:           1.4.12
  * Author:            Shalior <contact@shalior.ir>
  * Author URI:        http://shalior.ir/
  * License:           GPL-2.0+
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 // holds the plugin path.
 define( 'WP_REFERRAL_CODE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WP_REFERRAL_CODE_URI', plugin_dir_url( __FILE__ ) );
-define( 'WP_REFERRAL_CODE_VERSION', '1.4.10' );
+define( 'WP_REFERRAL_CODE_VERSION', '1.4.12' );
 
 /**
  * The code that runs during plugin activation.
@@ -61,17 +61,26 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wp-referral-code.php';
 function run_wp_referral_code() {
 
 	WP_Referral_Code::get_instance();
-
 }
+
+
+$default_options = array(
+	'code_length'                => 6,
+	'register_url'               => wp_registration_url(),
+	'expiration_time'            => 10,
+	'show_referral_info_columns' => '1',
+);
 
 // gets necessary options.
 $wp_referral_code_options = get_option(
 	'wp_referral_code_options',
-	array(
-		'code_length'     => 6,
-		'register_url'    => wp_registration_url(),
-		'expiration_time' => 10,
-	)
+	$default_options
+);
+
+// merge default options with the saved options.
+$wp_referral_code_options = wp_parse_args(
+	$wp_referral_code_options,
+	$default_options
 );
 
 // runs the plugin.
